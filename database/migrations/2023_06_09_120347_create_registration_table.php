@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RegistrationTable extends Migration
+class CreateRegistrationTable extends Migration
 {
     
     /**
@@ -15,8 +15,11 @@ class RegistrationTable extends Migration
     public function up()
     {
         Schema::create('registrations', function (Blueprint $table) {
+            $table->id();
             $table->text('measure');
             $table->text('impact');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

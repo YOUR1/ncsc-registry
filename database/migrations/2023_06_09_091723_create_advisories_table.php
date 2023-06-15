@@ -21,6 +21,7 @@ class CreateAdvisoriesTable extends Migration
             $table->integer('chance');
             $table->integer('damage');
             $table->text('desc');
+            $table->bigInteger('registration_id')->nullable()->unsigned();
         });
     }
 

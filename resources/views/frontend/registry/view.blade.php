@@ -50,12 +50,15 @@
                     <x-slot name="body">
                         <x-forms.patch :action="route('frontend.user.registry.update', $advisory->id)">
                         <div class="table-responsive">
-                            @if ( $registration )
+                            @if ( $advisory->registration )
                             <div class="alert alert-info">@lang('This advisory has registered actions to it.')</div>
                             @endif
                             <table class="table table-striped table-hover table-bordered mb-0">
                                 <tr>
-                                    <th>@lang('Impact')</th>
+                                    <th>
+                                        @lang('Impact')
+                                        <hr />
+                                    </th>
                                     <td>
                                         <select class="impact-templates form-control mb-1 template-selector">
                                             <option value=""></option>
@@ -63,11 +66,14 @@
                                                 <option>@lang($text)</option>
                                             @endforeach
                                         </select>
-                                        <textarea name="impact" class="form-control" placeholder="{{ __('Enter impact or select template above') }}" required>{{ old('impact') ?? $registration->impact }}</textarea>
+                                        <textarea name="impact" class="form-control" placeholder="{{ __('Enter impact or select template above') }}" required>{{ $advisory->registration->impact ?? '' }}</textarea>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th width="30%">@lang('Measure')</th>
+                                    <th width="30%">
+                                        @lang('Measure')
+                                        <hr />
+                                    </th>
                                     <td>
                                         <select class="measure-templates form-control mb-1 template-selector">
                                             <option value=""></option>
@@ -75,12 +81,17 @@
                                                 <option>@lang($text)</option>
                                             @endforeach
                                         </select>
-                                        <textarea name="measure" class="form-control" placeholder="{{ __('Enter measure or select measure template above') }}" required autofocus>{{ old('measure') ?? $registration->measure }}</textarea>
+                                        <textarea name="measure" class="form-control" placeholder="{{ __('Enter measure or select measure template above') }}" required autofocus>{{ $advisory->registration->measure ?? '' }}</textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
                                         <button class="btn btn-sm btn-primary" type="submit">@lang('Publish / Save')</button>
+                                        <div class="float-right">
+                                            @if ( $advisory->registration )
+                                            <small class="text-muted">@lang('Last saved on :date', [ 'date' => $advisory->registration->updated_at->format('Y-m-d')])</small>
+                                            @endif
+                                        </div>
                                     </td>
                                 </tr>
                             </table>

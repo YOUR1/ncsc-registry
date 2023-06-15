@@ -31,12 +31,8 @@ class RegistryController {
 	 * @throws BindingResolutionException 
 	 */
 	public function view( Request $request, int $id ) {
-		$advisory = $this->registryService->getById( $id );
-		$registration = Registration::find($advisory->registration_id);
-
 		return view("frontend.registry.view", [
-			"advisory" => $advisory,
-			'registration' => $registration
+			"advisory" => $this->registryService->getById( $id )
 		]);
 	}
 
