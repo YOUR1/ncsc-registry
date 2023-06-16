@@ -13,7 +13,7 @@ class ExportController {
 		$this->registryService = $registryService;
 	}
 
-    public function index( Request $request, string $type ) {        
+    public function index( Request $request, string $type ) {
         if ( $type === 'json' ) {
             $request->headers->set( 'Accept', 'application/json' );
         } else if ( $type === 'wiki' ) {
@@ -46,10 +46,12 @@ class ExportController {
         }
 
         $output = "{| class=\"wikitable sortable\"" . PHP_EOL;
-        $output .= sprintf( "! %s || %s || %s || %s || " . PHP_EOL, trans('NCSC ID' ), trans('Chance / Damage' ), trans('Impact'), trans('Measure') );
+        $output .= sprintf( "! %s || %s || %s || %s || %s || %s || " . PHP_EOL, trans('NCSC ID' ), trans('Title'), trans('Version'), trans('Chance / Damage' ), trans('Impact'), trans('Measure') );
         $output .= "|-" . PHP_EOL;
         foreach ( $advisories as $advisory ) {
             $output .= sprintf( "|%s", "[{$advisory->url} {$advisory->ncsc_id}]" ) . PHP_EOL;
+            $output .= sprintf( "|%s", $advisory->title . PHP_EOL );
+            $output .= sprintf( "|%s", $advisory->version . PHP_EOL );
             $output .= sprintf( "|%s", getChanceDamageLevel($advisory->chance, $advisory->damage ) ) . PHP_EOL;
             $output .= sprintf( "|%s", $advisory->registration->impact ) . PHP_EOL;
             $output .= sprintf( "|%s", $advisory->registration->measure ) . PHP_EOL;

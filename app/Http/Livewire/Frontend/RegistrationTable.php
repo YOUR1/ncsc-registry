@@ -13,7 +13,7 @@ class RegistrationTable extends DataTableComponent {
 	 * @return Builder
 	 */
 	public function query(): Builder {
-		Return Advisory::query();
+		Return Advisory::query()->orderBy( 'id', 'desc' );
 	}
 
 	/**
@@ -22,7 +22,9 @@ class RegistrationTable extends DataTableComponent {
 	public function columns(): array {
 		return [
 			Column::make( __( 'ID' ) )->sortable(),
-			Column::make( __('Action taken') )->sortable()
+			Column::make( __( 'Title' ) )->sortable(),
+			Column::make( __( 'Version') )->sortable(),
+			Column::make( __( 'Action taken' ) )->sortable()
 		];
 	}
 

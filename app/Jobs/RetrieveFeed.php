@@ -50,6 +50,8 @@ class RetrieveFeed implements ShouldQueue
             $advisory = Advisory::firstOrCreate(
                 [
                     'ncsc_id' => $feedItem->getId(),
+                    'version' => $feedItem->getVersion(),
+                    'title' => $feedItem->getTitle()
                 ],
                 [
                     'url' => $feedItem->getUrl(),

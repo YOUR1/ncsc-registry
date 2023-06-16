@@ -21,9 +21,9 @@ return [
         ]
     ],
     'api'=> [
-        'auth_required' => false,
+        'auth_required' => true,
         'json'=> [
-            'columns' => [ 'ncsc_id', 'updated_at', 'chance', 'damage', 'registration_id' ]
+            'columns' => [ 'ncsc_id', 'updated_at', 'chance', 'damage', 'registration_id', 'title' ]
         ]
     ]
 ];

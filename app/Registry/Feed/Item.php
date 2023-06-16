@@ -33,6 +33,7 @@ class Item
         $this->desc = $item->get_description();
         $this->url = $item->get_link();
         $this->updated_date = $item->data['child'][""]["pubDate"][0]["data"] ?? null;
+        $this->parseVersion( $item->data['child']['']['guid'][0]['data'] ?? null );
     }
 
     /**
@@ -44,9 +45,15 @@ class Item
     private function parseTitle( string $title ) {
         $values = explode( ' ', $title );
         $this->id = array_shift( $values );
-        $this->ver = str_replace( [ '[', ']' ], '', array_shift( $values ) );
+        array_shift( $values );
         $this->damage = str_replace( [ '[', ']' ], '', array_shift( $values ) );
         $this->title = implode(  ' ', $values );
+    }
+
+    private function parseVersion( ?string $string ) {
+        if ( preg_match_all( '/.* \[(.*)\]/', $string, $matches ) ) {
+            $this->ver = $matches[1][0];
+        }
     }
 
     /**

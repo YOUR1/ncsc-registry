@@ -11,7 +11,8 @@ class Advisory extends Model
     use HasFactory;
 
     public $fillable = [
-        'ncsc_id', 'url', 'chance', 'damage', 'desc', 'registration_id'
+        'ncsc_id','title', 'url', 'chance', 
+        'damage', 'desc', 'registration_id', 'version'
     ];
 
     

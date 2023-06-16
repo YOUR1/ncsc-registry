@@ -19,9 +19,18 @@
                                     <td>{{ $advisory->ncsc_id }} (<a href="{{ $advisory->url }}" target="_blank">{{ $advisory->url }}</a>)</td>
                                 </tr>
                                 <tr>
+                                    <th>@lang('Title')</th>
+                                    <td>{{ $advisory->title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>@lang('Version')</th>
+                                    <td>{{ $advisory->version }}</td>
+                                </tr>
+                                <tr>
                                     <th>@lang('Description')</th>
                                     <td>{{ $advisory->desc }}</td>
                                 </tr>
+                            
                                 <tr>
                                     <th>@lang('Signed PGP')</th>
                                     <td><a href="{{ $advisory->url }}&version=1.04&format=plain" target="_blank">{{ $advisory->url }}&version=1.04&format=plain</a></td>
