@@ -28,7 +28,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new RetrieveFeed)->everyThirtyMinutes();
+        $schedule->command("job:dispatch", [ "RetrieveFeed" ] )
+            ->everyThirtyMinutes()
+            ->runInBackground()
+            ->withoutOverlapping();
     }
 
     /**

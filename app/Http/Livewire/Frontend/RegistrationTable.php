@@ -9,11 +9,16 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RegistrationTable extends DataTableComponent {
 
+	public $columnSearch = [
+		'ID' => 'ncsc_id',
+		'Title' => 'title'
+	];
+
 	/**
 	 * @return Builder
 	 */
 	public function query(): Builder {
-		Return Advisory::query()->orderBy( 'id', 'desc' );
+		Return Advisory::query()->orderBy( 'ncsc_id', 'desc' )->orderBy( 'version', 'desc' )->limit( 100 );
 	}
 
 	/**
@@ -21,10 +26,10 @@ class RegistrationTable extends DataTableComponent {
 	 */
 	public function columns(): array {
 		return [
-			Column::make( __( 'ID' ) )->sortable(),
-			Column::make( __( 'Title' ) )->sortable(),
-			Column::make( __( 'Version') )->sortable(),
-			Column::make( __( 'Action taken' ) )->sortable()
+			Column::make( __( 'ID' ) ),
+			Column::make( __( 'Title' ) ),
+			Column::make( __( 'Version') ),
+			Column::make( __( 'Action taken' ) )
 		];
 	}
 
