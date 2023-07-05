@@ -5,6 +5,32 @@ use App\Registry\Feed\Item;
 return [
     'min_chance_level' => Item::CHANCE_HIGH,
     'min_damage_level' => Item::DAMAGE_HIGH,
+    // If the software is in the list add the item to the feed 
+    // regardless of the chance and damage level
+    'used_software' => [
+        'mediawiki', 
+        'elasticsearch',
+        'mariadb', 
+        'php',
+        'redis', 
+        'fuseki',
+        'laravel', 
+        'apache',
+        'jenkins', 
+        'postfix',
+        'simplesamlphp',
+        'annif',
+        'jena', 
+        'haproxy', 
+        'varnish',
+        'solr', 
+        'drupal',
+        'maxscale',
+        'matomo',
+        'grafana',
+        'pandoc',
+        'gitlab'
+    ],
     'actions' => [
         'message_templates' => [
             'measure' => [

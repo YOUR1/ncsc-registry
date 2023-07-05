@@ -38,11 +38,12 @@ class RetrieveFeed implements ShouldQueue
         $reader = new Reader( $feedReader );
         $skipped = 0;
         $inserted = 0;
+        $softwareUsed = config('feedregistry.used_software');
         foreach( $reader->getItems() as $feedItem ) {
             list( $chance, $damage ) = $feedItem->getDamage();
-            $shouldBeSaved = $chance >= config('feedregistry.min_chance_level') && $damage >= config('feedregistry.min_damage_level');
-
-            if ( !$shouldBeSaved ) {
+            $hasChangeOrDamageLevel = $chance >= config('feedregistry.min_chance_level') && $damage >= config('feedregistry.min_damage_level');
+            $hasSoftwareInTitle = count( array_filter( $softwareUsed, function( $package ) use ( $feedItem ) { return strstr( strtolower( $feedItem->getTitle() ), $package ); } ) );
+            if ( $hasSoftwareInTitle == 0 && !$hasChangeOrDamageLevel ) {
                 ++$skipped;
                 continue;
             }
