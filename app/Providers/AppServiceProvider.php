@@ -27,6 +27,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Required for serving assets over https when running behind the load balancers.
+        // Because we you use the remoteip module with Apache, Laravel's TrustedProxy solution will not work.
+        if(config('app.env') !== 'local') {
+            \URL::forceScheme('https');
+        }
+        
         Paginator::useBootstrap();
     }
 }
