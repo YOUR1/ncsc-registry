@@ -3,8 +3,8 @@
 use App\Registry\Feed\Item;
 
 return [
-    'min_chance_level' => Item::CHANCE_HIGH,
-    'min_damage_level' => Item::DAMAGE_HIGH,
+    'min_chance_level' => Item::CHANCE_LOW,
+    'min_damage_level' => Item::DAMAGE_LOW,
     // If the software is in the list add the item to the feed 
     // regardless of the chance and damage level
     'used_software' => [
